@@ -46,10 +46,10 @@ def main():
 
     if not chat.choices or len(chat.choices) == 0:
             raise RuntimeError("no choices in response")
-
+            
         response = chat.choices[0].message
         response_message = chat.choices[0].message
-
+        
         message_dict = {
             "role": response_message.role,
             "content": response_message.content,
