@@ -41,7 +41,28 @@ def main():
                             "required": ["file_path"],
                         },
                     },
-                }
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "Write",
+                        "description": "Write content to a file",
+                        "parameters": {
+                            "type": "object",
+                            "required": ["file_path", "content"],
+                            "properties": {
+                                "file_path": {
+                                    "type": "string",
+                                    "description": "The path of the file to write to",
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "description": "The content to write to the file",
+                                },
+                            },
+                        },
+                    },
+                },
             ]
         )
 
@@ -84,6 +105,9 @@ def main():
                             "content": result,
                         }
                     )
+            if tc.function.name == "Write":
+                with open(args_dict["file_path"], "w") as f:
+                    f.write(response.content)
 
 
 if __name__ == "__main__":
