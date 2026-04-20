@@ -44,6 +44,15 @@ def main():
 
     if not chat.choices or len(chat.choices) == 0:
         raise RuntimeError("no choices in response")
+        
+    if chat.choices[0].message.content:
+        print(chat.choices[0].message.content)
+
+    for tc in chat.choices[0].message.tool_calls or []:
+        args = json.loads(tc.function.arguments)
+        if tc.function.name == "Read":
+            with open(args["file_path"]) as f:
+                print(f.read())
 
     # You can use print statements as follows for debugging, they'll be visible when running tests.
     print("Logs from your program will appear here!", file=sys.stderr)
