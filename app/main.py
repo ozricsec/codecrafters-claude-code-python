@@ -134,7 +134,7 @@ def main():
                         }
                     )
             if tc.function.name == "Bash":
-                subprocess.run([args_dict["command"]])
+                subprocess.run(args_dict["command"])
                 messages.append(
                     {
                         "role": "tool",
