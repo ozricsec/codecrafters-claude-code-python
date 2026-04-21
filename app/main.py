@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 import json
-import subprocess
+from subprocess import Popen, PIPE
 
 from openai import OpenAI
 
