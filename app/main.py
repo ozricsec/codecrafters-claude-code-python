@@ -141,7 +141,7 @@ def main():
                     {
                         "role": "tool",
                         "tool_call_id": tc.id,
-                        "content": ,
+                        "content": output,
                     }
                 )
 
