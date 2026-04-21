@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 import json
+import subprocess
 
 from openai import OpenAI
 
@@ -63,6 +64,23 @@ def main():
                         },
                     },
                 },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "Bash",
+                        "description": "Execute a shell command",
+                        "parameters": {
+                            "type": "object",
+                            "required": ["command"],
+                            "properties": {
+                                "command": {
+                                    "type": "string",
+                                    "description": "The command to execute",
+                                },
+                            },
+                        },
+                    },
+                },
             ]
         )
 
@@ -113,6 +131,15 @@ def main():
                             "role": "tool",
                             "tool_call_id": tc.id,
                             "content": "File write successful.",
+                        }
+                    )
+            if tc.function.name == "Bash":
+                subprocess.run([args_dict["command"]])
+                    messages.append(
+                        {
+                            "role": "tool",
+                            "tool_call_id": tc.id,
+                            "content": "Command was successful.",
                         }
                     )
 
