@@ -135,13 +135,13 @@ def main():
                     )
             if tc.function.name == "Bash":
                 subprocess.run([args_dict["command"]])
-                    messages.append(
-                        {
-                            "role": "tool",
-                            "tool_call_id": tc.id,
-                            "content": "Command was successful.",
-                        }
-                    )
+                messages.append(
+                    {
+                        "role": "tool",
+                        "tool_call_id": tc.id,
+                        "content": "Command was successful.",
+                    }
+                )
 
 
 if __name__ == "__main__":
