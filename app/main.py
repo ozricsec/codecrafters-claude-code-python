@@ -137,11 +137,12 @@ def main():
                 #subprocess.run(args_dict["command"], shell=True)
                 process = Popen(args_dict["command"], shell=True, stdout=PIPE, stderr=PIPE)
                 output, err = process.communicate()
+                content = (output or err).decode("utf-8", errors="replace")
                 messages.append(
                     {
                         "role": "tool",
                         "tool_call_id": tc.id,
-                        "content": output,
+                        "content": content,
                     }
                 )
 
