@@ -107,7 +107,7 @@ def main():
                     )
             if tc.function.name == "Write":
                 with open(args_dict["file_path"], "w") as f:
-                    f.write(response.content)
+                    f.write(args_dict["content"])
                     messages.append(
                         {
                             "role": "tool",
