@@ -135,7 +135,7 @@ def main():
                     )
             if tc.function.name == "Bash":
                 #subprocess.run(args_dict["command"], shell=True)
-                process = Popen(args_dict["command"], stdout=PIPE, stderr=PIPE)
+                process = Popen(args_dict["command"], shell=True, stdout=PIPE, stderr=PIPE)
                 output, err = process.communicate()
                 messages.append(
                     {
