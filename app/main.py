@@ -108,6 +108,13 @@ def main():
             if tc.function.name == "Write":
                 with open(args_dict["file_path"], "w") as f:
                     f.write(response.content)
+                    messages.append(
+                        {
+                            "role": "tool",
+                            "tool_call_id": tc.id,
+                            "content": "File write successful.",
+                        }
+                    )
 
 
 if __name__ == "__main__":
