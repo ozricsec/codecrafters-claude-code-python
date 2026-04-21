@@ -134,12 +134,14 @@ def main():
                         }
                     )
             if tc.function.name == "Bash":
-                subprocess.run(args_dict["command"], shell=True)
+                #subprocess.run(args_dict["command"], shell=True)
+                process = Popen(args_dict["command"], stdout=PIPE, stderr=PIPE)
+                output, err = process.communicate()
                 messages.append(
                     {
                         "role": "tool",
                         "tool_call_id": tc.id,
-                        "content": "Command was successful.",
+                        "content": ,
                     }
                 )
 
